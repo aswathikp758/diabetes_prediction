@@ -1,0 +1,35 @@
+from waitress import serve
+from deploy import app
+import multiprocessing
+
+if __name__=='__main__':
+    num_cpus=multiprocessing.cpu_count()
+
+    threads_per_worker=max(1,num_cpus-1)
+    
+    print("Threads:",threads_per_worker)
+
+    serve(
+        app,
+        host='0.0.0.0',
+        port=8080,
+        threads=threads_per_worker
+    )
+
+    print('server started')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
